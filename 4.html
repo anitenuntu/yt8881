@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f5f6f8">
+  <title>#桜井宁宁 - 修女 #黑丝 #巨乳</title>
+  <style>
+    /* ---------- 顶部 Banner ---------- */
+    .top-banner { margin: 0; text-align: center; animation: fadeIn .6s ease both; }
+    .top-banner a {
+      display: block; line-height: 0;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow .25s ease;
+    }
+    .top-banner a:hover { box-shadow: var(--shadow-md); }
+    .top-banner img { display: block; width: 100%; height: auto; max-width: 100%; background: #eef0f3; }
+    .top-banner .fallback {
+      display: none; padding: 40px 16px; background: var(--bg-card);
+      border: 1px dashed var(--line); border-radius: var(--radius-md);
+      color: var(--text-mute); font-size: 14px;
+    }
+    .top-banner.fail img { display: none; }
+    .top-banner.fail .fallback { display: block; }
+
+    /* ---------- 基础 ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --bg: #f5f6f8; --bg-card: #ffffff; --text: #1a1d23;
+      --text-soft: #6b7280; --text-mute: #9aa1ac; --line: #e8eaee;
+      --accent: #2563eb; --accent-soft: #eff4ff;
+      --warn: #b45309; --warn-soft: #fef3c7;
+      --radius-lg: 18px; --radius-md: 12px; --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, .04), 0 1px 3px rgba(15, 23, 42, .04);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, .06), 0 2px 4px rgba(15, 23, 42, .04);
+      --shadow-lg: 0 20px 50px rgba(15, 23, 42, .18);
+      --maxw: 1180px;
+      --ripple: rgba(37, 99, 235, .4);      /* 波纹起始色 */
+      --ripple-fade: rgba(37, 99, 235, 0);  /* 波纹消散色（同色相，避免灰闪） */
+    }
+    html { height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      display: flex; flex-direction: column;   /* 底部 sticky 锚点：短内容页也能贴到视口底 */
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+                   "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text); background: var(--bg);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      line-height: 1.55;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+    main.container { flex: 1; }
+
+    /* ---------- 头部 ---------- */
+    .hero { padding: 22px 0 28px; text-align: center; animation: fadeUp .6s ease both; }
+    .hero h1 {
+      margin: 0; font-size: clamp(28px, 4.4vw, 40px); font-weight: 700;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #1a1d23 0%, #2563eb 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero .subtitle { margin: 10px 0 0; color: var(--text-soft); font-size: 14px; }
+    .hero .notice {
+      margin: 16px auto 0; max-width: 760px; padding: 0 12px;
+      color: var(--text-mute); font-size: 13px; line-height: 1.75; text-align: center;
+    }
+    .hero .notice .greeting { color: var(--text-soft); font-weight: 600; letter-spacing: .02em; }
+    .hero .tagline {
+      margin: 14px auto 0; display: inline-block; position: relative; padding: 6px 18px;
+      font-size: 13px; letter-spacing: .08em; color: var(--accent);
+      background: var(--accent-soft); border-radius: 999px; line-height: 1.5;
+      text-decoration: none; cursor: pointer;
+      transition: background .2s ease, color .2s ease, transform .15s ease;
+    }
+    /* 呼吸扩散波纹：吸引点击 */
+    .hero .tagline::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 999px;
+      box-shadow: 0 0 0 0 var(--ripple);
+      animation: ripple 2.2s ease-out infinite;
+      pointer-events: none;
+    }
+    .hero .tagline:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+
+    /* ---------- 画廊 ---------- */
+    .gallery {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px; padding-bottom: 110px; animation: fadeUp .6s .1s ease both;
+    }
+    .card {
+      position: relative; background: var(--bg-card); border: 1px solid var(--line);
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #d8dde5; cursor: zoom-in; }
+    .card .thumb {
+      display: block; width: 100%; height: auto; object-fit: contain;
+      background: #eef0f3; transition: transform .4s ease;
+    }
+    .card:hover .thumb { transform: scale(1.03); }
+    .empty { text-align: center; color: var(--text-mute); padding: 40px 0; font-size: 14px; }
+
+    /* ---------- 灯箱 ---------- */
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(10, 12, 18, .78);
+      display: none; align-items: center; justify-content: center;
+      padding: 24px; z-index: 100; animation: fadeIn .2s ease both;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 96vw; max-height: 92vh; border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg); background: #000;
+    }
+    .lightbox .close {
+      position: absolute; top: 18px; right: 18px; width: 38px; height: 38px;
+      border-radius: 50%; background: rgba(255, 255, 255, .12); color: #fff;
+      border: none; font-size: 20px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: background .2s ease;
+    }
+    .lightbox .close:hover { background: rgba(255, 255, 255, .22); }
+
+    /* ---------- 底部悬浮按钮（sticky 锚点：浏览器原生贴底，地址栏伸缩也不抖动） ---------- */
+    .float-anchor {
+      position: sticky;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      z-index: 50;
+      display: flex; justify-content: center;
+      pointer-events: none;                   /* 锚点占位不拦截点击，按钮自身恢复可点 */
+    }
+    .float-btn {
+      pointer-events: auto;
+      display: inline-flex; align-items: center;
+      max-width: calc(100vw - 24px);          /* 窄屏保护：长文字按钮也不溢出 */
+      padding: 14px 32px; font-size: 15px; font-weight: 600; letter-spacing: .04em;
+      color: #1a1d23;
+      background: rgba(255, 255, 255, .88);   /* 半透明实底：不用 backdrop-filter，规避手机内核滚动时 fixed 元素消失的兼容 bug */
+      border: 1px solid rgba(255, 255, 255, .65);
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, .18), 0 2px 6px rgba(15, 23, 42, .12), inset 0 1px 0 rgba(255, 255, 255, .4);
+      text-decoration: none; white-space: nowrap;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .float-btn:hover {
+      transform: translateY(-2px); background: rgba(255, 255, 255, .95);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, .24), 0 4px 10px rgba(15, 23, 42, .16), inset 0 1px 0 rgba(255, 255, 255, .5);
+    }
+    .float-btn:active { transform: scale(.98); }
+    /* 极旧内核（不支持 sticky）回退 fixed 居中 */
+    @supports not (position: sticky) {
+      .float-anchor { display: block; height: 0; }
+      .float-btn {
+        position: fixed;
+        left: 0; right: 0; margin: 0 auto; width: fit-content;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+    }
+
+    /* ---------- 动画 ---------- */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes ripple {
+      0%   { box-shadow: 0 0 0 0  var(--ripple); }
+      70%  { box-shadow: 0 0 0 14px var(--ripple-fade); }
+      100% { box-shadow: 0 0 0 0  var(--ripple-fade); }
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 640px) {
+      .hero { padding: 18px 0 18px; }
+      .gallery { gap: 14px; }
+      .float-anchor { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+      .float-btn { font-size: 14px; padding: 12px 22px; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1115; --bg-card: #181b22; --text: #e6e8ec;
+        --text-soft: #aab0bb; --text-mute: #6f7682; --line: #262a32;
+        --accent: #60a5fa; --accent-soft: #1e2a44;
+        --warn: #fbbf24; --warn-soft: #3a2a0c;
+        --ripple: rgba(96, 165, 250, .45);
+        --ripple-fade: rgba(96, 165, 250, 0);
+      }
+      body { background: var(--bg); }
+      .float-btn { color: #fff; background: rgba(24, 27, 34, .88); border-color: rgba(255, 255, 255, .22); }
+      .float-btn:hover { background: rgba(24, 27, 34, .95); }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- 顶部 Banner -->
+    <div class="top-banner" id="topBanner">
+      <a id="topBannerLink" href="https://link3.cc/y996" target="_blank" rel="noopener">
+        <img id="topBannerImg" src="https://wkphoto.cdn.bcebos.com/14ce36d3d539b60027ba14ebf950352ac65cb771.jpg" alt="顶部图片" referrerpolicy="no-referrer" loading="eager" decoding="async">
+      </a>
+      <div class="fallback">顶部图片加载失败 —— <a href="https://link3.cc/y996" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">点这里前往</a></div>
+    </div>
+
+    <!-- 标题 -->
+    <header class="hero">
+      <h1 style="font-weight: 700;">#桜井宁宁 - 修女 #黑丝 #巨乳 [68P]</h1>
+      <p class="notice"><span class="greeting">Dear Admin:</span> The content on this page consists of photography as artistic works and does not contain pornographic or adult material.</p>
+      <div><a class="tagline" href="https://pan.xunlei.com/s/VP1xmal-NMEUzR6TalRkjlxzA1?pwd=gu88#" target="_blank" rel="noopener">摄影艺术作品鉴赏交流，无不良引导，点击下载原图</a></div>
+    </header>
+
+    <!-- 图片画廊 -->
+    <section class="gallery" id="gallery" aria-label="图片画廊"><a class="card" data-full="https://wkphoto.cdn.bcebos.com/32fa828ba61ea8d3a7c70958870a304e241f5880.jpg" aria-label="001"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/4d086e061d950a7bcb8433981ad162d9f2d3c93d.jpg" alt="001" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/6f061d950a7b0208b17842bd72d9f2d3572cc83d.jpg" aria-label="002"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/4ec2d5628535e5ddd754d88366c6a7efce1b6275.jpg" alt="002" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/9a504fc2d5628535ca98af7d80ef76c6a7ef6375.jpg" aria-label="003"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/03087bf40ad162d93f5f1f4001dfa9ec8a13cd3d.jpg" alt="003" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d53f8794a4c27d1ea81546980bd5ad6eddc438be.jpg" aria-label="004"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/a5c27d1ed21b0ef467dbe502cdc451da81cb3ebe.jpg" alt="004" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/622762d0f703918f76854096413d269759eec412.jpg" aria-label="005"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0b7b02087bf40ad1ae55babf472c11dfa9ecce3d.jpg" alt="005" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/503d269759ee3d6d8949fa9753166d224e4adedb.jpg" aria-label="006"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/503d269759ee3d6d8949fa9753166d224e4adedb.jpg" alt="006" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/7af40ad162d9f2d399a059b3b9ec8a136327cc3d.jpg" aria-label="007"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0bd162d9f2d3572cde53e1809a13632762d0c33d.jpg" alt="007" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/a71ea8d3fd1f4134cbd27822351f95cad0c85e80.jpg" aria-label="008"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/8435e5dde71190ef4483ef83de1b9d16fdfa6075.jpg" alt="008" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/279759ee3d6d55fb6f490b7a7d224f4a21a4dddb.jpg" aria-label="009"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/e4dde71190ef76c694aa86778d16fdfaaf516775.jpg" alt="009" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/2f738bd4b31c87011aa8cfba377f9e2f0708ff54.jpg" aria-label="010"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/09fa513d269759eee6041d97a2fb43166d22df12.jpg" alt="010" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/503d269759ee3d6d8992fa9753166d224f4ade12.jpg" aria-label="011"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b3fb43166d224f4ac1cd0e4f19f790529822d112.jpg" alt="011" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/8601a18b87d6277f200c4f6438381f30e924fc54.jpg" aria-label="012"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/8601a18b87d6277f200c4f6438381f30e924fc54.jpg" alt="012" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/fc1f4134970a304e7bc7dda6c1c8a786c8175c80.jpg" aria-label="013"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/960a304e251f95cab110efead9177f3e66095280.jpg" alt="013" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/50da81cb39dbb6fdd168987a1924ab18972b37be.jpg" aria-label="014"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/e61190ef76c6a7effa5ed57aedfaaf51f3de6675.jpg" alt="014" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/86d6277f9e2f0708e81b575cf924b899a901f254.jpg" aria-label="015"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/6c224f4a20a44623ea9ed83e8822720e0cf3d712.jpg" alt="015" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/38dbb6fd5266d0168c2ae374872bd40735fa35be.jpg" aria-label="016"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/38dbb6fd5266d0168c2ae374872bd40735fa35be.jpg" alt="016" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/94cad1c8a786c9171ce62f65d93d70cf3ac75780.jpg" aria-label="017"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/54fbb2fb43166d22aff868c8562309f79152d2db.jpg" alt="017" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/c8177f3e6709c93d161773ab8f3df8dcd0005480.jpg" aria-label="018"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/c8177f3e6709c93d161773ab8f3df8dcd0005480.jpg" alt="018" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/21a4462309f790527d4b3a621cf3d7ca7bcbd512.jpg" aria-label="019"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/7e3e6709c93d70cf5c1fd751e8dcd100bba12b80.jpg" alt="019" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/060828381f30e9247bbae16d5c086e061d95f754.jpg" aria-label="020"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/060828381f30e9247bbae16d5c086e061d95f754.jpg" alt="020" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/267f9e2f07082838de13a148a899a9014c08f154.jpg" aria-label="021"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/a6efce1b9d16fdfa9814bbb2a48f8c5494ee7b75.jpg" alt="021" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/c83d70cf3bc79f3d9104996caaa1cd11738b2980.jpg" aria-label="022"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/c83d70cf3bc79f3d9104996caaa1cd11738b2980.jpg" alt="022" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/5366d0160924ab1810259c6b25fae6cd7b890bbe.jpg" aria-label="023"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/42166d224f4a20a4a491419b80529822730ed0db.jpg" alt="023" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/c2fdfc039245d688a2e7cff8b4c27d1ed31b2480.jpg" aria-label="024"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/1b4c510fd9f9d72a97306d41c42a2834349bbb12.jpg" alt="024" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/6c224f4a20a44623ea45d83e8822720e0df3d7db.jpg" aria-label="025"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/6c224f4a20a44623ea45d83e8822720e0df3d7db.jpg" alt="025" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/63d0f703918fa0ecdfd91951369759ee3d6ddb54.jpg" aria-label="026"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/63d0f703918fa0ecdfd91951369759ee3d6ddb54.jpg" alt="026" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/a50f4bfbfbedab649f41309ce736afc379311ebe.jpg" aria-label="027"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/d62a6059252dd42ad25d7cf7133b5bb5c9eab812.jpg" alt="027" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/8644ebf81a4c510f2c909f467059252dd42aa512.jpg" aria-label="028"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b812c8fcc3cec3fd8fdbda29c688d43f86942780.jpg" alt="028" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/c2cec3fdfc039245a3509c539794a4c27c1e2580.jpg" aria-label="029"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/91529822720e0cf33f4633a71a46f21fbe09aa3d.jpg" alt="029" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/8cb1cb134954092394111e228258d109b3de4975.jpg" aria-label="030"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/eaf81a4c510fd9f921432835352dd42a2834a412.jpg" alt="030" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/ca1349540923dd541c0bda34c109b3de9c824875.jpg" aria-label="031"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/a1ec08fa513d269783cd750145fbb2fb4316d854.jpg" alt="031" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/500fd9f9d72a6059dd449c463834349b033bba12.jpg" aria-label="032"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0823dd54564e92589d4cfbb28c82d158ccbf4e75.jpg" alt="032" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/fd039245d688d43ff04cecae6d1ed21b0ff43b80.jpg" aria-label="033"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/72f082025aafa40fd2f5b381bb64034f78f019be.jpg" alt="033" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/3c6d55fbb2fb4316b201072630a4462309f7d354.jpg" aria-label="034"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/3c6d55fbb2fb4316b201072630a4462309f7d354.jpg" alt="034" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/9922720e0cf3d7ca9247422ae21fbe096b63a93d.jpg" aria-label="035"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/83025aafa40f4bfb61e3e308134f78f0f73618be.jpg" alt="035" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d53f8794a4c27d1ea8c346980bd5ad6edcc43880.jpg" aria-label="036"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/503d269759ee3d6d89d8fa9753166d224f4ade54.jpg" alt="036" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/09fa513d269759eee64e1d97a2fb43166d22df54.jpg" aria-label="037"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/730e0cf3d7ca7bcbe0caba73ae096b63f624a83d.jpg" alt="037" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/6159252dd42a2834cff24b574bb5c9ea15cebf12.jpg" aria-label="038"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0df3d7ca7bcb0a461993f6657b63f6246b60af3d.jpg" alt="038" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/242dd42a2834349bff5213d9d9ea15ce36d3be12.jpg" aria-label="039"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/58ee3d6d55fbb2fb9d35254e5f4a20a44623dc54.jpg" alt="039" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d52a2834349b033ba6dc818605ce36d3d539bd12.jpg" aria-label="040"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/faedab64034f78f06938e7af69310a55b3191cbe.jpg" alt="040" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/7acb0a46f21fbe0986efbe487b600c338744ad3d.jpg" aria-label="041"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/7acb0a46f21fbe0986efbe487b600c338744ad3d.jpg" alt="041" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/aa64034f78f0f73630cd315d1a55b319ebc413be.jpg" aria-label="042"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/d6ca7bcb0a46f21f5285230fe6246b600c33ae3d.jpg" alt="042" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d52a2834349b033ba607818605ce36d3d439bddb.jpg" aria-label="043"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0b46f21fbe096b6318a8230c1c338744ebf8ac3d.jpg" alt="043" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/a5c27d1ed21b0ef4670de502cdc451da80cb3e80.jpg" aria-label="044"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/7c1ed21b0ef41bd5d0b695a841da81cb38db3d80.jpg" alt="044" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/2934349b033b5bb537585da226d3d539b700bcdb.jpg" aria-label="045"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/359b033b5bb5c9eaea7c7ebfc539b6003bf3b3db.jpg" alt="045" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/023b5bb5c9ea15ce36609d55a6003af33b87b2db.jpg" aria-label="046"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/2934349b033b5bb537835da226d3d539b600bc12.jpg" alt="046" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/359b033b5bb5c9eaeaa77ebfc539b6003af3b312.jpg" aria-label="047"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/5ab5c9ea15ce36d3d48afe6c2af33a87e850b1db.jpg" alt="047" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/c8ea15ce36d3d539b46a729f2a87e950352ab012.jpg" aria-label="048"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/54fbb2fb43166d22af6968c8562309f79052d254.jpg" alt="048" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/f7246b600c33874419745220410fd9f9d72aa03d.jpg" aria-label="049"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/f7246b600c33874419745220410fd9f9d72aa03d.jpg" alt="049" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/b3fb43166d224f4ac1870e4f19f790529822d154.jpg" aria-label="050"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/c8ea15ce36d3d539b4b3729f2a87e950342ab0db.jpg" alt="050" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/6a63f6246b600c3376c8a3940a4c510fd9f9a13d.jpg" aria-label="051"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/d009b3de9c82d1589cfa24ed900a19d8bc3e4275.jpg" alt="051" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d31b0ef41bd5ad6ea31c19b691cb39dbb7fd3c80.jpg" aria-label="052"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/4e4a20a4462309f77471d04e620e0cf3d7cad654.jpg" alt="052" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/b7003af33a87e95033998e3000385343faf2b4db.jpg" aria-label="053"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b7003af33a87e95033408e3000385343fbf2b412.jpg" alt="053" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/0ff41bd5ad6eddc42e02c9a729dbb6fd53663380.jpg" aria-label="054"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/730e0cf3d7ca7bcbe065ba73ae096b63f624a854.jpg" alt="054" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/3bf33a87e950352ac1ef58544343fbf2b3118bdb.jpg" aria-label="055"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/472309f790529822942d449fc7ca7bcb0a46d454.jpg" alt="055" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/3bf33a87e950352ac13658544343fbf2b2118b12.jpg" aria-label="056"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0df3d7ca7bcb0a46193cf6657b63f6246b60af54.jpg" alt="056" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/b2de9c82d158ccbf3dc4c86609d8bc3eb1354175.jpg" aria-label="057"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/3b87e950352ac65c188b1b2febf2b21192138adb.jpg" alt="057" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/9d82d158ccbf6c81d24f51b4ac3eb13533fa4075.jpg" aria-label="058"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/6a600c338744ebf8e9c01963c9f9d72a6059a73d.jpg" alt="058" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/7acb0a46f21fbe098640be487b600c338744ad54.jpg" aria-label="059"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b03533fa828ba61ef196b5735134970a304e5975.jpg" alt="059" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/b64543a98226cffcb619c2eea9014a90f603eabf.jpg" aria-label="060"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/eaf81a4c510fd9f921a62835352dd42a2834a43d.jpg" alt="060" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d6ca7bcb0a46f21f522a230fe6246b600c33ae54.jpg" aria-label="061"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/50da81cb39dbb6fdd1be987a1924ab18962b3780.jpg" alt="061" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/bd3eb13533fa828bfe5be0bfed1f4134970a5a75.jpg" aria-label="062"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/80cb39dbb6fd526654ce4148bb18972bd5073680.jpg" alt="062" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/38dbb6fd5266d0168cfce374872bd40734fa3580.jpg" aria-label="063"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0b46f21fbe096b631807230c1c338744ebf8ac54.jpg" alt="063" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/1b4c510fd9f9d72a97d56d41c42a2834349bbb3d.jpg" aria-label="064"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/32fa828ba61ea8d3a75a0958870a304e251f5875.jpg" alt="064" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/11385343fbf2b2119fa0f812da8065380dd78edb.jpg" aria-label="065"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/500fd9f9d72a6059dda19c463834349b033bba3d.jpg" alt="065" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/0824ab18972bd407bc22aea16b899e510eb30980.jpg" aria-label="066"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/42a98226cffc1e17238cf16d5a90f603738de9bf.jpg" alt="066" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/a9d3fd1f4134970a6d0b6d7385cad1c8a7865d75.jpg" aria-label="067"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/8b82b9014a90f603de83e11b2912b31bb051edbf.jpg" alt="067" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/fc1f4134970a304e7b5adda6c1c8a786c9175c75.jpg" aria-label="068"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/bf096b63f6246b60fc10cf28fbf81a4c510fa254.jpg" alt="068" referrerpolicy="no-referrer"></a></section>
+  </main>
+
+  <!-- 灯箱 -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+    <button class="close" id="lightboxClose" aria-label="关闭">×</button>
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <!-- 底部悬浮按钮（sticky 锚点贴底，浏览器原生管理，无 JS 跟随） -->
+  <div class="float-anchor">
+    <a class="float-btn" href="https://d.e688.xyz/QYvB63" target="_blank" rel="noopener" aria-label="点击加入艺术园">
+      点击加入艺术园
+    </a>
+  </div>
+
+  <script>
+    const IMAGES = [
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/32fa828ba61ea8d3a7c70958870a304e241f5880.jpg",
+    "name": "001",
+    "web": "https://wkphoto.cdn.bcebos.com/4d086e061d950a7bcb8433981ad162d9f2d3c93d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/6f061d950a7b0208b17842bd72d9f2d3572cc83d.jpg",
+    "name": "002",
+    "web": "https://wkphoto.cdn.bcebos.com/4ec2d5628535e5ddd754d88366c6a7efce1b6275.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/9a504fc2d5628535ca98af7d80ef76c6a7ef6375.jpg",
+    "name": "003",
+    "web": "https://wkphoto.cdn.bcebos.com/03087bf40ad162d93f5f1f4001dfa9ec8a13cd3d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d53f8794a4c27d1ea81546980bd5ad6eddc438be.jpg",
+    "name": "004",
+    "web": "https://wkphoto.cdn.bcebos.com/a5c27d1ed21b0ef467dbe502cdc451da81cb3ebe.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/622762d0f703918f76854096413d269759eec412.jpg",
+    "name": "005",
+    "web": "https://wkphoto.cdn.bcebos.com/0b7b02087bf40ad1ae55babf472c11dfa9ecce3d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/503d269759ee3d6d8949fa9753166d224e4adedb.jpg",
+    "name": "006"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/7af40ad162d9f2d399a059b3b9ec8a136327cc3d.jpg",
+    "name": "007",
+    "web": "https://wkphoto.cdn.bcebos.com/0bd162d9f2d3572cde53e1809a13632762d0c33d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/a71ea8d3fd1f4134cbd27822351f95cad0c85e80.jpg",
+    "name": "008",
+    "web": "https://wkphoto.cdn.bcebos.com/8435e5dde71190ef4483ef83de1b9d16fdfa6075.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/279759ee3d6d55fb6f490b7a7d224f4a21a4dddb.jpg",
+    "name": "009",
+    "web": "https://wkphoto.cdn.bcebos.com/e4dde71190ef76c694aa86778d16fdfaaf516775.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/2f738bd4b31c87011aa8cfba377f9e2f0708ff54.jpg",
+    "name": "010",
+    "web": "https://wkphoto.cdn.bcebos.com/09fa513d269759eee6041d97a2fb43166d22df12.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/503d269759ee3d6d8992fa9753166d224f4ade12.jpg",
+    "name": "011",
+    "web": "https://wkphoto.cdn.bcebos.com/b3fb43166d224f4ac1cd0e4f19f790529822d112.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/8601a18b87d6277f200c4f6438381f30e924fc54.jpg",
+    "name": "012"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/fc1f4134970a304e7bc7dda6c1c8a786c8175c80.jpg",
+    "name": "013",
+    "web": "https://wkphoto.cdn.bcebos.com/960a304e251f95cab110efead9177f3e66095280.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/50da81cb39dbb6fdd168987a1924ab18972b37be.jpg",
+    "name": "014",
+    "web": "https://wkphoto.cdn.bcebos.com/e61190ef76c6a7effa5ed57aedfaaf51f3de6675.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/86d6277f9e2f0708e81b575cf924b899a901f254.jpg",
+    "name": "015",
+    "web": "https://wkphoto.cdn.bcebos.com/6c224f4a20a44623ea9ed83e8822720e0cf3d712.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/38dbb6fd5266d0168c2ae374872bd40735fa35be.jpg",
+    "name": "016"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/94cad1c8a786c9171ce62f65d93d70cf3ac75780.jpg",
+    "name": "017",
+    "web": "https://wkphoto.cdn.bcebos.com/54fbb2fb43166d22aff868c8562309f79152d2db.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/c8177f3e6709c93d161773ab8f3df8dcd0005480.jpg",
+    "name": "018"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/21a4462309f790527d4b3a621cf3d7ca7bcbd512.jpg",
+    "name": "019",
+    "web": "https://wkphoto.cdn.bcebos.com/7e3e6709c93d70cf5c1fd751e8dcd100bba12b80.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/060828381f30e9247bbae16d5c086e061d95f754.jpg",
+    "name": "020"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/267f9e2f07082838de13a148a899a9014c08f154.jpg",
+    "name": "021",
+    "web": "https://wkphoto.cdn.bcebos.com/a6efce1b9d16fdfa9814bbb2a48f8c5494ee7b75.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/c83d70cf3bc79f3d9104996caaa1cd11738b2980.jpg",
+    "name": "022"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/5366d0160924ab1810259c6b25fae6cd7b890bbe.jpg",
+    "name": "023",
+    "web": "https://wkphoto.cdn.bcebos.com/42166d224f4a20a4a491419b80529822730ed0db.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/c2fdfc039245d688a2e7cff8b4c27d1ed31b2480.jpg",
+    "name": "024",
+    "web": "https://wkphoto.cdn.bcebos.com/1b4c510fd9f9d72a97306d41c42a2834349bbb12.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/6c224f4a20a44623ea45d83e8822720e0df3d7db.jpg",
+    "name": "025"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/63d0f703918fa0ecdfd91951369759ee3d6ddb54.jpg",
+    "name": "026"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/a50f4bfbfbedab649f41309ce736afc379311ebe.jpg",
+    "name": "027",
+    "web": "https://wkphoto.cdn.bcebos.com/d62a6059252dd42ad25d7cf7133b5bb5c9eab812.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/8644ebf81a4c510f2c909f467059252dd42aa512.jpg",
+    "name": "028",
+    "web": "https://wkphoto.cdn.bcebos.com/b812c8fcc3cec3fd8fdbda29c688d43f86942780.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/c2cec3fdfc039245a3509c539794a4c27c1e2580.jpg",
+    "name": "029",
+    "web": "https://wkphoto.cdn.bcebos.com/91529822720e0cf33f4633a71a46f21fbe09aa3d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/8cb1cb134954092394111e228258d109b3de4975.jpg",
+    "name": "030",
+    "web": "https://wkphoto.cdn.bcebos.com/eaf81a4c510fd9f921432835352dd42a2834a412.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/ca1349540923dd541c0bda34c109b3de9c824875.jpg",
+    "name": "031",
+    "web": "https://wkphoto.cdn.bcebos.com/a1ec08fa513d269783cd750145fbb2fb4316d854.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/500fd9f9d72a6059dd449c463834349b033bba12.jpg",
+    "name": "032",
+    "web": "https://wkphoto.cdn.bcebos.com/0823dd54564e92589d4cfbb28c82d158ccbf4e75.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/fd039245d688d43ff04cecae6d1ed21b0ff43b80.jpg",
+    "name": "033",
+    "web": "https://wkphoto.cdn.bcebos.com/72f082025aafa40fd2f5b381bb64034f78f019be.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/3c6d55fbb2fb4316b201072630a4462309f7d354.jpg",
+    "name": "034"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/9922720e0cf3d7ca9247422ae21fbe096b63a93d.jpg",
+    "name": "035",
+    "web": "https://wkphoto.cdn.bcebos.com/83025aafa40f4bfb61e3e308134f78f0f73618be.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d53f8794a4c27d1ea8c346980bd5ad6edcc43880.jpg",
+    "name": "036",
+    "web": "https://wkphoto.cdn.bcebos.com/503d269759ee3d6d89d8fa9753166d224f4ade54.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/09fa513d269759eee64e1d97a2fb43166d22df54.jpg",
+    "name": "037",
+    "web": "https://wkphoto.cdn.bcebos.com/730e0cf3d7ca7bcbe0caba73ae096b63f624a83d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/6159252dd42a2834cff24b574bb5c9ea15cebf12.jpg",
+    "name": "038",
+    "web": "https://wkphoto.cdn.bcebos.com/0df3d7ca7bcb0a461993f6657b63f6246b60af3d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/242dd42a2834349bff5213d9d9ea15ce36d3be12.jpg",
+    "name": "039",
+    "web": "https://wkphoto.cdn.bcebos.com/58ee3d6d55fbb2fb9d35254e5f4a20a44623dc54.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d52a2834349b033ba6dc818605ce36d3d539bd12.jpg",
+    "name": "040",
+    "web": "https://wkphoto.cdn.bcebos.com/faedab64034f78f06938e7af69310a55b3191cbe.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/7acb0a46f21fbe0986efbe487b600c338744ad3d.jpg",
+    "name": "041"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/aa64034f78f0f73630cd315d1a55b319ebc413be.jpg",
+    "name": "042",
+    "web": "https://wkphoto.cdn.bcebos.com/d6ca7bcb0a46f21f5285230fe6246b600c33ae3d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d52a2834349b033ba607818605ce36d3d439bddb.jpg",
+    "name": "043",
+    "web": "https://wkphoto.cdn.bcebos.com/0b46f21fbe096b6318a8230c1c338744ebf8ac3d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/a5c27d1ed21b0ef4670de502cdc451da80cb3e80.jpg",
+    "name": "044",
+    "web": "https://wkphoto.cdn.bcebos.com/7c1ed21b0ef41bd5d0b695a841da81cb38db3d80.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/2934349b033b5bb537585da226d3d539b700bcdb.jpg",
+    "name": "045",
+    "web": "https://wkphoto.cdn.bcebos.com/359b033b5bb5c9eaea7c7ebfc539b6003bf3b3db.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/023b5bb5c9ea15ce36609d55a6003af33b87b2db.jpg",
+    "name": "046",
+    "web": "https://wkphoto.cdn.bcebos.com/2934349b033b5bb537835da226d3d539b600bc12.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/359b033b5bb5c9eaeaa77ebfc539b6003af3b312.jpg",
+    "name": "047",
+    "web": "https://wkphoto.cdn.bcebos.com/5ab5c9ea15ce36d3d48afe6c2af33a87e850b1db.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/c8ea15ce36d3d539b46a729f2a87e950352ab012.jpg",
+    "name": "048",
+    "web": "https://wkphoto.cdn.bcebos.com/54fbb2fb43166d22af6968c8562309f79052d254.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/f7246b600c33874419745220410fd9f9d72aa03d.jpg",
+    "name": "049"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/b3fb43166d224f4ac1870e4f19f790529822d154.jpg",
+    "name": "050",
+    "web": "https://wkphoto.cdn.bcebos.com/c8ea15ce36d3d539b4b3729f2a87e950342ab0db.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/6a63f6246b600c3376c8a3940a4c510fd9f9a13d.jpg",
+    "name": "051",
+    "web": "https://wkphoto.cdn.bcebos.com/d009b3de9c82d1589cfa24ed900a19d8bc3e4275.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d31b0ef41bd5ad6ea31c19b691cb39dbb7fd3c80.jpg",
+    "name": "052",
+    "web": "https://wkphoto.cdn.bcebos.com/4e4a20a4462309f77471d04e620e0cf3d7cad654.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/b7003af33a87e95033998e3000385343faf2b4db.jpg",
+    "name": "053",
+    "web": "https://wkphoto.cdn.bcebos.com/b7003af33a87e95033408e3000385343fbf2b412.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/0ff41bd5ad6eddc42e02c9a729dbb6fd53663380.jpg",
+    "name": "054",
+    "web": "https://wkphoto.cdn.bcebos.com/730e0cf3d7ca7bcbe065ba73ae096b63f624a854.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/3bf33a87e950352ac1ef58544343fbf2b3118bdb.jpg",
+    "name": "055",
+    "web": "https://wkphoto.cdn.bcebos.com/472309f790529822942d449fc7ca7bcb0a46d454.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/3bf33a87e950352ac13658544343fbf2b2118b12.jpg",
+    "name": "056",
+    "web": "https://wkphoto.cdn.bcebos.com/0df3d7ca7bcb0a46193cf6657b63f6246b60af54.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/b2de9c82d158ccbf3dc4c86609d8bc3eb1354175.jpg",
+    "name": "057",
+    "web": "https://wkphoto.cdn.bcebos.com/3b87e950352ac65c188b1b2febf2b21192138adb.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/9d82d158ccbf6c81d24f51b4ac3eb13533fa4075.jpg",
+    "name": "058",
+    "web": "https://wkphoto.cdn.bcebos.com/6a600c338744ebf8e9c01963c9f9d72a6059a73d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/7acb0a46f21fbe098640be487b600c338744ad54.jpg",
+    "name": "059",
+    "web": "https://wkphoto.cdn.bcebos.com/b03533fa828ba61ef196b5735134970a304e5975.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/b64543a98226cffcb619c2eea9014a90f603eabf.jpg",
+    "name": "060",
+    "web": "https://wkphoto.cdn.bcebos.com/eaf81a4c510fd9f921a62835352dd42a2834a43d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d6ca7bcb0a46f21f522a230fe6246b600c33ae54.jpg",
+    "name": "061",
+    "web": "https://wkphoto.cdn.bcebos.com/50da81cb39dbb6fdd1be987a1924ab18962b3780.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/bd3eb13533fa828bfe5be0bfed1f4134970a5a75.jpg",
+    "name": "062",
+    "web": "https://wkphoto.cdn.bcebos.com/80cb39dbb6fd526654ce4148bb18972bd5073680.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/38dbb6fd5266d0168cfce374872bd40734fa3580.jpg",
+    "name": "063",
+    "web": "https://wkphoto.cdn.bcebos.com/0b46f21fbe096b631807230c1c338744ebf8ac54.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/1b4c510fd9f9d72a97d56d41c42a2834349bbb3d.jpg",
+    "name": "064",
+    "web": "https://wkphoto.cdn.bcebos.com/32fa828ba61ea8d3a75a0958870a304e251f5875.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/11385343fbf2b2119fa0f812da8065380dd78edb.jpg",
+    "name": "065",
+    "web": "https://wkphoto.cdn.bcebos.com/500fd9f9d72a6059dda19c463834349b033bba3d.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/0824ab18972bd407bc22aea16b899e510eb30980.jpg",
+    "name": "066",
+    "web": "https://wkphoto.cdn.bcebos.com/42a98226cffc1e17238cf16d5a90f603738de9bf.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/a9d3fd1f4134970a6d0b6d7385cad1c8a7865d75.jpg",
+    "name": "067",
+    "web": "https://wkphoto.cdn.bcebos.com/8b82b9014a90f603de83e11b2912b31bb051edbf.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/fc1f4134970a304e7b5adda6c1c8a786c9175c75.jpg",
+    "name": "068",
+    "web": "https://wkphoto.cdn.bcebos.com/bf096b63f6246b60fc10cf28fbf81a4c510fa254.jpg"
+  }
+];
+
+    const NETDISK_URL = "https://d.e688.xyz/QYvB63";
+
+    // ------------------------------------------------------------
+    //  渲染画廊
+    // ------------------------------------------------------------
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+    if (!IMAGES.length) {
+      gallery.innerHTML = '<p class="empty">还没有图片。</p>';
+    } else {
+      const frag = document.createDocumentFragment();
+      IMAGES.forEach((it, i) => {
+        const a = document.createElement("a");
+        a.className = "card";
+        a.dataset.full = it.src;
+        a.setAttribute("aria-label", it.name || `图片 ${i + 1}`);
+
+        const img = document.createElement("img");
+        img.className = "thumb";
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = it.web || it.src;   // 画廊用缩略图（若有），减轻手机端内存压力
+        img.alt = it.name || `图片 ${i + 1}`;
+        img.onerror = () => {
+          img.alt = (it.name || "图片") + "（加载失败）";
+          img.style.background = "#fde68a";
+          img.removeAttribute("src");
+        };
+
+        a.appendChild(img);
+        frag.appendChild(a);
+      });
+      gallery.appendChild(frag);
+    }
+
+    // ------------------------------------------------------------
+    //  顶部 Banner 加载失败兜底
+    // ------------------------------------------------------------
+    const topImg = document.getElementById("topBannerImg");
+    const topBox = document.getElementById("topBanner");
+    if (topImg && topBox) {
+      topImg.addEventListener("error", () => {
+        topBox.classList.add("fail");
+        console.warn("顶部 Banner 加载失败：", topImg.src);
+      });
+    }
+
+    // ------------------------------------------------------------
+    //  外链点击兜底（iframe 沙箱可能拦截 _blank）
+    // ------------------------------------------------------------
+    function safeOpen(url) {
+      let w = null;
+      try { w = window.open(url, "_blank"); } catch (e) {}
+      if (w && !w.closed) return;
+      try { window.top.location.href = url; }
+      catch (e) { window.location.href = url; }
+    }
+    document.querySelectorAll('a[target="_blank"][href^="http"]').forEach(a => {
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        safeOpen(a.href);
+      });
+    });
+
+    // ------------------------------------------------------------
+    //  灯箱
+    // ------------------------------------------------------------
+    const lb    = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightboxImg");
+    const lbBtn = document.getElementById("lightboxClose");
+
+    gallery.addEventListener("click", e => {
+      const card = e.target.closest(".card");
+      if (!card) return;
+      e.preventDefault();
+      lbImg.src = card.dataset.full;
+      lbImg.alt = "";
+      lb.classList.add("open");
+    });
+    const closeLb = () => { lb.classList.remove("open"); lbImg.src = ""; };
+    lbBtn.addEventListener("click", closeLb);
+    lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
+  </script>
+
+</body>
+</html>
