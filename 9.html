@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f5f6f8">
+  <title>#浅安安 - 风纪委员 #巨乳 #眼镜娘 [40P]</title>
+  <style>
+    /* ---------- 顶部 Banner ---------- */
+    .top-banner { margin: 0; text-align: center; animation: fadeIn .6s ease both; }
+    .top-banner a {
+      display: block; line-height: 0;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow .25s ease;
+    }
+    .top-banner a:hover { box-shadow: var(--shadow-md); }
+    .top-banner img { display: block; width: 100%; height: auto; max-width: 100%; background: #eef0f3; }
+    .top-banner .fallback {
+      display: none; padding: 40px 16px; background: var(--bg-card);
+      border: 1px dashed var(--line); border-radius: var(--radius-md);
+      color: var(--text-mute); font-size: 14px;
+    }
+    .top-banner.fail img { display: none; }
+    .top-banner.fail .fallback { display: block; }
+
+    /* ---------- 基础 ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --bg: #f5f6f8; --bg-card: #ffffff; --text: #1a1d23;
+      --text-soft: #6b7280; --text-mute: #9aa1ac; --line: #e8eaee;
+      --accent: #2563eb; --accent-soft: #eff4ff;
+      --warn: #b45309; --warn-soft: #fef3c7;
+      --radius-lg: 18px; --radius-md: 12px; --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, .04), 0 1px 3px rgba(15, 23, 42, .04);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, .06), 0 2px 4px rgba(15, 23, 42, .04);
+      --shadow-lg: 0 20px 50px rgba(15, 23, 42, .18);
+      --maxw: 1180px;
+      --ripple: rgba(37, 99, 235, .4);      /* 波纹起始色 */
+      --ripple-fade: rgba(37, 99, 235, 0);  /* 波纹消散色（同色相，避免灰闪） */
+    }
+    html { height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      display: flex; flex-direction: column;   /* 底部 sticky 锚点：短内容页也能贴到视口底 */
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+                   "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text); background: var(--bg);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      line-height: 1.55;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+    main.container { flex: 1; }
+
+    /* ---------- 头部 ---------- */
+    .hero { padding: 22px 0 28px; text-align: center; animation: fadeUp .6s ease both; }
+    .hero h1 {
+      margin: 0; font-size: clamp(28px, 4.4vw, 40px); font-weight: 700;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #1a1d23 0%, #2563eb 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero .subtitle { margin: 10px 0 0; color: var(--text-soft); font-size: 14px; }
+    .hero .notice {
+      margin: 16px auto 0; max-width: 760px; padding: 0 12px;
+      color: var(--text-mute); font-size: 13px; line-height: 1.75; text-align: center;
+    }
+    .hero .notice .greeting { color: var(--text-soft); font-weight: 600; letter-spacing: .02em; }
+    .hero .tagline {
+      margin: 14px auto 0; display: inline-block; position: relative; padding: 6px 18px;
+      font-size: 13px; letter-spacing: .08em; color: var(--accent);
+      background: var(--accent-soft); border-radius: 999px; line-height: 1.5;
+      text-decoration: none; cursor: pointer;
+      transition: background .2s ease, color .2s ease, transform .15s ease;
+    }
+    /* 呼吸扩散波纹：吸引点击 */
+    .hero .tagline::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 999px;
+      box-shadow: 0 0 0 0 var(--ripple);
+      animation: ripple 2.2s ease-out infinite;
+      pointer-events: none;
+    }
+    .hero .tagline:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+
+    /* ---------- 画廊 ---------- */
+    .gallery {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px; padding-bottom: 110px; animation: fadeUp .6s .1s ease both;
+    }
+    .card {
+      position: relative; background: var(--bg-card); border: 1px solid var(--line);
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #d8dde5; cursor: zoom-in; }
+    .card .thumb {
+      display: block; width: 100%; height: auto; object-fit: contain;
+      background: #eef0f3; transition: transform .4s ease;
+    }
+    .card:hover .thumb { transform: scale(1.03); }
+    .empty { text-align: center; color: var(--text-mute); padding: 40px 0; font-size: 14px; }
+
+    /* ---------- 灯箱 ---------- */
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(10, 12, 18, .78);
+      display: none; align-items: center; justify-content: center;
+      padding: 24px; z-index: 100; animation: fadeIn .2s ease both;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 96vw; max-height: 92vh; border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg); background: #000;
+    }
+    .lightbox .close {
+      position: absolute; top: 18px; right: 18px; width: 38px; height: 38px;
+      border-radius: 50%; background: rgba(255, 255, 255, .12); color: #fff;
+      border: none; font-size: 20px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: background .2s ease;
+    }
+    .lightbox .close:hover { background: rgba(255, 255, 255, .22); }
+
+    /* ---------- 底部悬浮按钮（sticky 锚点：浏览器原生贴底，地址栏伸缩也不抖动） ---------- */
+    .float-anchor {
+      position: sticky;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      z-index: 50;
+      display: flex; justify-content: center;
+      pointer-events: none;                   /* 锚点占位不拦截点击，按钮自身恢复可点 */
+    }
+    .float-btn {
+      pointer-events: auto;
+      display: inline-flex; align-items: center;
+      max-width: calc(100vw - 24px);          /* 窄屏保护：长文字按钮也不溢出 */
+      padding: 14px 32px; font-size: 15px; font-weight: 600; letter-spacing: .04em;
+      color: #1a1d23;
+      background: rgba(255, 255, 255, .88);   /* 半透明实底：不用 backdrop-filter，规避手机内核滚动时 fixed 元素消失的兼容 bug */
+      border: 1px solid rgba(255, 255, 255, .65);
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, .18), 0 2px 6px rgba(15, 23, 42, .12), inset 0 1px 0 rgba(255, 255, 255, .4);
+      text-decoration: none; white-space: nowrap;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .float-btn:hover {
+      transform: translateY(-2px); background: rgba(255, 255, 255, .95);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, .24), 0 4px 10px rgba(15, 23, 42, .16), inset 0 1px 0 rgba(255, 255, 255, .5);
+    }
+    .float-btn:active { transform: scale(.98); }
+    /* 极旧内核（不支持 sticky）回退 fixed 居中 */
+    @supports not (position: sticky) {
+      .float-anchor { display: block; height: 0; }
+      .float-btn {
+        position: fixed;
+        left: 0; right: 0; margin: 0 auto; width: fit-content;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+    }
+
+    /* ---------- 动画 ---------- */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes ripple {
+      0%   { box-shadow: 0 0 0 0  var(--ripple); }
+      70%  { box-shadow: 0 0 0 14px var(--ripple-fade); }
+      100% { box-shadow: 0 0 0 0  var(--ripple-fade); }
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 640px) {
+      .hero { padding: 18px 0 18px; }
+      .gallery { gap: 14px; }
+      .float-anchor { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+      .float-btn { font-size: 14px; padding: 12px 22px; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1115; --bg-card: #181b22; --text: #e6e8ec;
+        --text-soft: #aab0bb; --text-mute: #6f7682; --line: #262a32;
+        --accent: #60a5fa; --accent-soft: #1e2a44;
+        --warn: #fbbf24; --warn-soft: #3a2a0c;
+        --ripple: rgba(96, 165, 250, .45);
+        --ripple-fade: rgba(96, 165, 250, 0);
+      }
+      body { background: var(--bg); }
+      .float-btn { color: #fff; background: rgba(24, 27, 34, .88); border-color: rgba(255, 255, 255, .22); }
+      .float-btn:hover { background: rgba(24, 27, 34, .95); }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- 顶部 Banner -->
+    <div class="top-banner" id="topBanner">
+      <a id="topBannerLink" href="https://link3.cc/y996" target="_blank" rel="noopener">
+        <img id="topBannerImg" src="https://wkphoto.cdn.bcebos.com/14ce36d3d539b60027ba14ebf950352ac65cb771.jpg" alt="顶部图片" referrerpolicy="no-referrer" loading="eager" decoding="async">
+      </a>
+      <div class="fallback">顶部图片加载失败 —— <a href="https://link3.cc/y996" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">点这里前往</a></div>
+    </div>
+
+    <!-- 标题 -->
+    <header class="hero">
+      <h1 style="font-weight: 700;">#浅安安 - 风纪委员 #巨乳 #眼镜娘 [40P]</h1>
+      <p class="notice"><span class="greeting">Dear Admin:</span> The content on this page consists of photography as artistic works and does not contain pornographic or adult material.</p>
+      <div><a class="tagline" href="https://pan.xunlei.com/s/VP2Dojeh0LXuogVyZRtLsm0FA1?pwd=63sw#" target="_blank" rel="noopener">摄影艺术作品鉴赏交流，无不良引导，点击下载原图</a></div>
+    </header>
+
+    <!-- 图片画廊 -->
+    <section class="gallery" id="gallery" aria-label="图片画廊"><a class="card" data-full="https://wkphoto.cdn.bcebos.com/f9dcd100baa1cd11101b147ca912c8fcc3ce2d38.jpg" aria-label="01"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/29381f30e924b899107a1f647e061d950a7bf62c.jpg" alt="01" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/80cb39dbb6fd5266aa5c5b48bb18972bd4073672.jpg" aria-label="02"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/d1160924ab18972baa4d6796f6cd7b899e510a72.jpg" alt="02" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/71cf3bc79f3df8dcb3eaeacddd11728b46102892.jpg" aria-label="03"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/9d82d158ccbf6c81c93348b4ac3eb13533fa4061.jpg" alt="03" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/3801213fb80e7bec48d065bd3f2eb9389b506b67.jpg" aria-label="04"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/267f9e2f07082838a94bba48a899a9014c08f12c.jpg" alt="04" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/0bd162d9f2d3572cd585fa809a13632762d0c303.jpg" aria-label="05"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/bf096b63f6246b60e9e5d428fbf81a4c500fa287.jpg" alt="05" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/fcfaaf51f3deb48fa363c782e01f3a292df57867.jpg" aria-label="06"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b58f8c5494eef01f0e767c99f0fe9925bc317d0f.jpg" alt="06" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/f3d3572c11dfa9ec4c49304b72d0f703918fc103.jpg" aria-label="07"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/9a504fc2d5628535c1eab47d80ef76c6a7ef6367.jpg" alt="07" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/242dd42a2834349bf28908d9d9ea15ce37d3bedb.jpg" aria-label="08"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b999a9014c086e06a1ee591712087bf40ad1cb2c.jpg" alt="08" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/2934349b033b5bb53a5846a226d3d539b700bcdb.jpg" aria-label="09"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b812c8fcc3cec3fd9493c129c688d43f87942738.jpg" alt="09" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/bba1cd11728b4710def89890d3cec3fdfd032392.jpg" aria-label="10"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/50da81cb39dbb6fd2a76837a1924ab18972b37b8.jpg" alt="10" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/242dd42a2834349bf2ed08d9d9ea15ce37d3be87.jpg" aria-label="11"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/242dd42a2834349bf2ed08d9d9ea15ce37d3be87.jpg" alt="11" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/9f510fb30f2442a75f799af9c143ad4bd1130272.jpg" aria-label="12"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/d788d43f8794a4c2138e81771ef41bd5ad6e3938.jpg" alt="12" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/0b7b02087bf40ad1a3a2a1bf472c11dfa9ecce2c.jpg" aria-label="13"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0bd162d9f2d3572cd5a4fa809a13632762d0c32c.jpg" alt="13" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/95eef01f3a292df5d6a1c849ac315c6034a8730f.jpg" aria-label="14"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/ac6eddc451da81cb4f4be5914266d01609243138.jpg" alt="14" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/72f082025aafa40fc4b1a981bb64034f78f01972.jpg" aria-label="15"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/c2fdfc039245d688bad5d7f8b4c27d1ed31b2492.jpg" alt="15" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/7af40ad162d9f2d3945742b3b9ec8a136327cc2c.jpg" aria-label="16"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/5ab5c9ea15ce36d323efe56c2af33a87e850b187.jpg" alt="16" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/fc1f4134970a304e7026c4a6c1c8a786c9175c61.jpg" aria-label="17"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/cf1b9d16fdfaaf51dccfe5e39c5494eef01f7ab9.jpg" alt="17" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/14ce36d3d539b600c22569ebf950352ac75cb787.jpg" aria-label="18"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/09fa513d269759eeed160697a2fb43166d22df2c.jpg" alt="18" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/7c1ed21b0ef41bd5d8848da841da81cb38db3d92.jpg" aria-label="19"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/7e3e6709c93d70cf65fece51e8dcd100baa12b61.jpg" alt="19" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d53f8794a4c27d1ea0f15e980bd5ad6edcc43892.jpg" aria-label="20"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/fcfaaf51f3deb48fbd45c582e01f3a292df578b9.jpg" alt="20" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/7a899e510fb30f24c6b78a5fd895d143ad4b03b8.jpg" aria-label="21"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/21a4462309f79052427821621cf3d7ca7bcbd503.jpg" alt="21" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d439b6003af33a8713866646d65c10385243b587.jpg" aria-label="22"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b7003af33a87e950cefc953000385343faf2b487.jpg" alt="22" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/472309f790529822a9545f9fc7ca7bcb0a46d403.jpg" aria-label="23"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/9825bc315c6034a86580dcdddb1349540923760f.jpg" alt="23" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/bd315c6034a85edfb1ee9a7f59540923dd54750f.jpg" aria-label="24"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/94cad1c8a786c91725073665d93d70cf3bc75761.jpg" alt="24" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/78310a55b319ebc42d0f11c59226cffc1e171672.jpg" aria-label="25"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/9825bc315c6034a865cedcdddb134954092376b9.jpg" alt="25" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/024f78f0f736afc3ef7b5839a319ebc4b7451272.jpg" aria-label="26"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/342ac65c103853430424e17d8313b07ecb808887.jpg" alt="26" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/e850352ac65c1038ad95a89ea2119313b17e8987.jpg" aria-label="27"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/c75c10385343fbf2b2c6c07fa07eca8064388f87.jpg" alt="27" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d058ccbf6c81800a5387ed52a13533fa828b470f.jpg" aria-label="28"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/64380cd7912397dda9f7fe584982b2b7d1a287db.jpg" alt="28" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/83025aafa40f4bfb74fdf808134f78f0f73618b8.jpg" aria-label="29"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/9213b07eca8065380964c24f87dda144ac3482db.jpg" alt="29" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/eaf81a4c510fd9f93c703335352dd42a2834a403.jpg" aria-label="30"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/810a19d8bc3eb1357ea5d3e7b61ea8d3fd1f440f.jpg" alt="30" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/d50735fae6cd7b891abb5fdf1f2442a7d8330e92.jpg" aria-label="31"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/9922720e0cf3d7caa5b0592ae21fbe096b63a92c.jpg" alt="31" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/024f78f0f736afc3ec215939a319ebc4b74512b8.jpg" aria-label="32"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/a044ad345982b2b7dc115f9821adcbef77099bdb.jpg" alt="32" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/21a4462309f79052425921621cf3d7ca7bcbd52c.jpg" aria-label="33"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/1b4c510fd9f9d72a8c037641c42a2834349bbb03.jpg" alt="33" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/4034970a304e251fc39580a4b786c9177f3e530f.jpg" aria-label="34"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b812c8fcc3cec3fd963ac329c688d43f87942761.jpg" alt="34" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/8b82b9014a90f603d0c7fb1b2912b31bb051ed73.jpg" aria-label="35"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/b8014a90f603738d0d3d6b7ea31bb051f819ec73.jpg" alt="35" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/79f0f736afc379319c45e075fbc4b74543a911b8.jpg" aria-label="36"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/d62a6059252dd42ac76e67f7133b5bb5c9eab803.jpg" alt="36" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/730e0cf3d7ca7bcbd53da173ae096b63f624a82c.jpg" aria-label="37"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/d009b3de9c82d15889883fed900a19d8bc3e4267.jpg" alt="37" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/caef76094b36acaf3d6ef0a06cd98d1000e99cdb.jpg" aria-label="38"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/caef76094b36acaf3d6ef0a06cd98d1000e99cdb.jpg" alt="38" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/0eb30f2442a7d933417f812fbd4bd11372f00192.jpg" aria-label="39"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/0eb30f2442a7d933417f812fbd4bd11372f00192.jpg" alt="39" referrerpolicy="no-referrer"></a>
+<a class="card" data-full="https://wkphoto.cdn.bcebos.com/faedab64034f78f064a6fcaf69310a55b3191c38.jpg" aria-label="40"><img class="thumb" loading="lazy" decoding="async" src="https://wkphoto.cdn.bcebos.com/faedab64034f78f064a6fcaf69310a55b3191c38.jpg" alt="40" referrerpolicy="no-referrer"></a></section>
+  </main>
+
+  <!-- 灯箱 -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+    <button class="close" id="lightboxClose" aria-label="关闭">×</button>
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <!-- 底部悬浮按钮（sticky 锚点贴底，浏览器原生管理，无 JS 跟随） -->
+  <div class="float-anchor">
+    <a class="float-btn" href="https://d.e688.xyz/QYvB63" target="_blank" rel="noopener" aria-label="点击加入艺术园">
+      点击加入艺术园
+    </a>
+  </div>
+
+  <script>
+    const IMAGES = [
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/f9dcd100baa1cd11101b147ca912c8fcc3ce2d38.jpg",
+    "name": "01",
+    "web": "https://wkphoto.cdn.bcebos.com/29381f30e924b899107a1f647e061d950a7bf62c.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/80cb39dbb6fd5266aa5c5b48bb18972bd4073672.jpg",
+    "name": "02",
+    "web": "https://wkphoto.cdn.bcebos.com/d1160924ab18972baa4d6796f6cd7b899e510a72.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/71cf3bc79f3df8dcb3eaeacddd11728b46102892.jpg",
+    "name": "03",
+    "web": "https://wkphoto.cdn.bcebos.com/9d82d158ccbf6c81c93348b4ac3eb13533fa4061.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/3801213fb80e7bec48d065bd3f2eb9389b506b67.jpg",
+    "name": "04",
+    "web": "https://wkphoto.cdn.bcebos.com/267f9e2f07082838a94bba48a899a9014c08f12c.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/0bd162d9f2d3572cd585fa809a13632762d0c303.jpg",
+    "name": "05",
+    "web": "https://wkphoto.cdn.bcebos.com/bf096b63f6246b60e9e5d428fbf81a4c500fa287.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/fcfaaf51f3deb48fa363c782e01f3a292df57867.jpg",
+    "name": "06",
+    "web": "https://wkphoto.cdn.bcebos.com/b58f8c5494eef01f0e767c99f0fe9925bc317d0f.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/f3d3572c11dfa9ec4c49304b72d0f703918fc103.jpg",
+    "name": "07",
+    "web": "https://wkphoto.cdn.bcebos.com/9a504fc2d5628535c1eab47d80ef76c6a7ef6367.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/242dd42a2834349bf28908d9d9ea15ce37d3bedb.jpg",
+    "name": "08",
+    "web": "https://wkphoto.cdn.bcebos.com/b999a9014c086e06a1ee591712087bf40ad1cb2c.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/2934349b033b5bb53a5846a226d3d539b700bcdb.jpg",
+    "name": "09",
+    "web": "https://wkphoto.cdn.bcebos.com/b812c8fcc3cec3fd9493c129c688d43f87942738.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/bba1cd11728b4710def89890d3cec3fdfd032392.jpg",
+    "name": "10",
+    "web": "https://wkphoto.cdn.bcebos.com/50da81cb39dbb6fd2a76837a1924ab18972b37b8.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/242dd42a2834349bf2ed08d9d9ea15ce37d3be87.jpg",
+    "name": "11"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/9f510fb30f2442a75f799af9c143ad4bd1130272.jpg",
+    "name": "12",
+    "web": "https://wkphoto.cdn.bcebos.com/d788d43f8794a4c2138e81771ef41bd5ad6e3938.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/0b7b02087bf40ad1a3a2a1bf472c11dfa9ecce2c.jpg",
+    "name": "13",
+    "web": "https://wkphoto.cdn.bcebos.com/0bd162d9f2d3572cd5a4fa809a13632762d0c32c.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/95eef01f3a292df5d6a1c849ac315c6034a8730f.jpg",
+    "name": "14",
+    "web": "https://wkphoto.cdn.bcebos.com/ac6eddc451da81cb4f4be5914266d01609243138.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/72f082025aafa40fc4b1a981bb64034f78f01972.jpg",
+    "name": "15",
+    "web": "https://wkphoto.cdn.bcebos.com/c2fdfc039245d688bad5d7f8b4c27d1ed31b2492.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/7af40ad162d9f2d3945742b3b9ec8a136327cc2c.jpg",
+    "name": "16",
+    "web": "https://wkphoto.cdn.bcebos.com/5ab5c9ea15ce36d323efe56c2af33a87e850b187.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/fc1f4134970a304e7026c4a6c1c8a786c9175c61.jpg",
+    "name": "17",
+    "web": "https://wkphoto.cdn.bcebos.com/cf1b9d16fdfaaf51dccfe5e39c5494eef01f7ab9.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/14ce36d3d539b600c22569ebf950352ac75cb787.jpg",
+    "name": "18",
+    "web": "https://wkphoto.cdn.bcebos.com/09fa513d269759eeed160697a2fb43166d22df2c.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/7c1ed21b0ef41bd5d8848da841da81cb38db3d92.jpg",
+    "name": "19",
+    "web": "https://wkphoto.cdn.bcebos.com/7e3e6709c93d70cf65fece51e8dcd100baa12b61.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d53f8794a4c27d1ea0f15e980bd5ad6edcc43892.jpg",
+    "name": "20",
+    "web": "https://wkphoto.cdn.bcebos.com/fcfaaf51f3deb48fbd45c582e01f3a292df578b9.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/7a899e510fb30f24c6b78a5fd895d143ad4b03b8.jpg",
+    "name": "21",
+    "web": "https://wkphoto.cdn.bcebos.com/21a4462309f79052427821621cf3d7ca7bcbd503.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d439b6003af33a8713866646d65c10385243b587.jpg",
+    "name": "22",
+    "web": "https://wkphoto.cdn.bcebos.com/b7003af33a87e950cefc953000385343faf2b487.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/472309f790529822a9545f9fc7ca7bcb0a46d403.jpg",
+    "name": "23",
+    "web": "https://wkphoto.cdn.bcebos.com/9825bc315c6034a86580dcdddb1349540923760f.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/bd315c6034a85edfb1ee9a7f59540923dd54750f.jpg",
+    "name": "24",
+    "web": "https://wkphoto.cdn.bcebos.com/94cad1c8a786c91725073665d93d70cf3bc75761.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/78310a55b319ebc42d0f11c59226cffc1e171672.jpg",
+    "name": "25",
+    "web": "https://wkphoto.cdn.bcebos.com/9825bc315c6034a865cedcdddb134954092376b9.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/024f78f0f736afc3ef7b5839a319ebc4b7451272.jpg",
+    "name": "26",
+    "web": "https://wkphoto.cdn.bcebos.com/342ac65c103853430424e17d8313b07ecb808887.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/e850352ac65c1038ad95a89ea2119313b17e8987.jpg",
+    "name": "27",
+    "web": "https://wkphoto.cdn.bcebos.com/c75c10385343fbf2b2c6c07fa07eca8064388f87.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d058ccbf6c81800a5387ed52a13533fa828b470f.jpg",
+    "name": "28",
+    "web": "https://wkphoto.cdn.bcebos.com/64380cd7912397dda9f7fe584982b2b7d1a287db.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/83025aafa40f4bfb74fdf808134f78f0f73618b8.jpg",
+    "name": "29",
+    "web": "https://wkphoto.cdn.bcebos.com/9213b07eca8065380964c24f87dda144ac3482db.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/eaf81a4c510fd9f93c703335352dd42a2834a403.jpg",
+    "name": "30",
+    "web": "https://wkphoto.cdn.bcebos.com/810a19d8bc3eb1357ea5d3e7b61ea8d3fd1f440f.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/d50735fae6cd7b891abb5fdf1f2442a7d8330e92.jpg",
+    "name": "31",
+    "web": "https://wkphoto.cdn.bcebos.com/9922720e0cf3d7caa5b0592ae21fbe096b63a92c.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/024f78f0f736afc3ec215939a319ebc4b74512b8.jpg",
+    "name": "32",
+    "web": "https://wkphoto.cdn.bcebos.com/a044ad345982b2b7dc115f9821adcbef77099bdb.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/21a4462309f79052425921621cf3d7ca7bcbd52c.jpg",
+    "name": "33",
+    "web": "https://wkphoto.cdn.bcebos.com/1b4c510fd9f9d72a8c037641c42a2834349bbb03.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/4034970a304e251fc39580a4b786c9177f3e530f.jpg",
+    "name": "34",
+    "web": "https://wkphoto.cdn.bcebos.com/b812c8fcc3cec3fd963ac329c688d43f87942761.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/8b82b9014a90f603d0c7fb1b2912b31bb051ed73.jpg",
+    "name": "35",
+    "web": "https://wkphoto.cdn.bcebos.com/b8014a90f603738d0d3d6b7ea31bb051f819ec73.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/79f0f736afc379319c45e075fbc4b74543a911b8.jpg",
+    "name": "36",
+    "web": "https://wkphoto.cdn.bcebos.com/d62a6059252dd42ac76e67f7133b5bb5c9eab803.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/730e0cf3d7ca7bcbd53da173ae096b63f624a82c.jpg",
+    "name": "37",
+    "web": "https://wkphoto.cdn.bcebos.com/d009b3de9c82d15889883fed900a19d8bc3e4267.jpg"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/caef76094b36acaf3d6ef0a06cd98d1000e99cdb.jpg",
+    "name": "38"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/0eb30f2442a7d933417f812fbd4bd11372f00192.jpg",
+    "name": "39"
+  },
+  {
+    "src": "https://wkphoto.cdn.bcebos.com/faedab64034f78f064a6fcaf69310a55b3191c38.jpg",
+    "name": "40"
+  }
+];
+
+    const NETDISK_URL = "https://d.e688.xyz/QYvB63";
+
+    // ------------------------------------------------------------
+    //  渲染画廊
+    // ------------------------------------------------------------
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+    if (!IMAGES.length) {
+      gallery.innerHTML = '<p class="empty">还没有图片。</p>';
+    } else {
+      const frag = document.createDocumentFragment();
+      IMAGES.forEach((it, i) => {
+        const a = document.createElement("a");
+        a.className = "card";
+        a.dataset.full = it.src;
+        a.setAttribute("aria-label", it.name || `图片 ${i + 1}`);
+
+        const img = document.createElement("img");
+        img.className = "thumb";
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = it.web || it.src;   // 画廊用缩略图（若有），减轻手机端内存压力
+        img.alt = it.name || `图片 ${i + 1}`;
+        img.onerror = () => {
+          img.alt = (it.name || "图片") + "（加载失败）";
+          img.style.background = "#fde68a";
+          img.removeAttribute("src");
+        };
+
+        a.appendChild(img);
+        frag.appendChild(a);
+      });
+      gallery.appendChild(frag);
+    }
+
+    // ------------------------------------------------------------
+    //  顶部 Banner 加载失败兜底
+    // ------------------------------------------------------------
+    const topImg = document.getElementById("topBannerImg");
+    const topBox = document.getElementById("topBanner");
+    if (topImg && topBox) {
+      topImg.addEventListener("error", () => {
+        topBox.classList.add("fail");
+        console.warn("顶部 Banner 加载失败：", topImg.src);
+      });
+    }
+
+    // ------------------------------------------------------------
+    //  外链点击兜底（iframe 沙箱可能拦截 _blank）
+    // ------------------------------------------------------------
+    function safeOpen(url) {
+      let w = null;
+      try { w = window.open(url, "_blank"); } catch (e) {}
+      if (w && !w.closed) return;
+      try { window.top.location.href = url; }
+      catch (e) { window.location.href = url; }
+    }
+    document.querySelectorAll('a[target="_blank"][href^="http"]').forEach(a => {
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        safeOpen(a.href);
+      });
+    });
+
+    // ------------------------------------------------------------
+    //  灯箱
+    // ------------------------------------------------------------
+    const lb    = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightboxImg");
+    const lbBtn = document.getElementById("lightboxClose");
+
+    gallery.addEventListener("click", e => {
+      const card = e.target.closest(".card");
+      if (!card) return;
+      e.preventDefault();
+      lbImg.src = card.dataset.full;
+      lbImg.alt = "";
+      lb.classList.add("open");
+    });
+    const closeLb = () => { lb.classList.remove("open"); lbImg.src = ""; };
+    lbBtn.addEventListener("click", closeLb);
+    lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
+  </script>
+
+</body>
+</html>
